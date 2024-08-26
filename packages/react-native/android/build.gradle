@@ -25,8 +25,8 @@ project.ext {
     versions: [
       android: [
         minSdk    : 20,
-        targetSdk : 31,
-        compileSdk: 31,
+        targetSdk : 34,
+        compileSdk: 34,
         // optional as gradle.buildTools comes with one by default
         // overriding here though to match the version RN uses
         // buildTools: "29.0.2"
@@ -52,8 +52,7 @@ android {
       consumerProguardFiles 'proguard-rules.pro'
     }
   }
-  compileSdkVersion = 31
-  buildToolsVersion = '30.0.3'
+  compileSdkVersion = 34
 }
 
 repositories {

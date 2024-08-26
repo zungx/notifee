@@ -68,6 +68,26 @@ public class ObjectUtils {
     return properties;
   }
 
+  public static int getInt(@Nullable Object value) {
+    if (value == null) {
+      return 0;
+    }
+
+    if (value instanceof Double) {
+      return (int) ((Double) value).doubleValue();
+    }
+
+    return (int) value;
+  }
+
+  public static long getLong(Object value) {
+    if (value instanceof Double) {
+      return (long) ((Double) value).doubleValue();
+    }
+
+    return (long) value;
+  }
+
   public static byte[] bundleToBytes(@NonNull Bundle bundle) {
     Parcel parcel = Parcel.obtain();
     parcel.writeBundle(bundle);

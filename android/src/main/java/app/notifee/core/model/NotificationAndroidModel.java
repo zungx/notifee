@@ -18,14 +18,18 @@ package app.notifee.core.model;
  */
 
 import android.app.Notification;
+import android.content.pm.ServiceInfo;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import app.notifee.core.Logger;
+import app.notifee.core.utility.ObjectUtils;
 import app.notifee.core.utility.ResourceUtils;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -56,6 +60,29 @@ public class NotificationAndroidModel {
     }
 
     return null;
+  }
+
+  @RequiresApi(api = Build.VERSION_CODES.Q)
+  public int getForegroundServiceType() {
+    if (!mNotificationAndroidBundle.containsKey("foregroundServiceTypes")) {
+      // no foreground service types provided, so we default to manifest
+      return ServiceInfo.FOREGROUND_SERVICE_TYPE_MANIFEST;
+    }
+
+    ArrayList<?> foregroundServiceTypesArrayList =
+      Objects.requireNonNull(mNotificationAndroidBundle.getParcelableArrayList("foregroundServiceTypes"));
+
+    int foregroundServiceType = 0;
+    for (int i = 0; i < foregroundServiceTypesArrayList.size(); i++) {
+      foregroundServiceType |= ObjectUtils.getInt(foregroundServiceTypesArrayList.get(i));
+    }
+
+    // from Android 14, it is disallowed to use NONE type, so we default to manifest
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE && foregroundServiceType == ServiceInfo.FOREGROUND_SERVICE_TYPE_NONE) {
+      return ServiceInfo.FOREGROUND_SERVICE_TYPE_MANIFEST;
+    }
+
+    return foregroundServiceType;
   }
 
   /**
