@@ -1,3 +1,17 @@
+# sx-notifee
+This version fork from [@notifee/react-native 4.1.0](https://www.npmjs.com/package/@notifee/react-native/v/4.1.0)
+### Update changes
+- Fix start foreground service for android 14.
+  - https://developer.android.com/about/versions/14/changes/fgs-types-required
+  - https://github.com/invertase/notifee/pull/1050/files
+  - https://github.com/invertase/notifee/issues/1045
+
+<br /><br /><br />
+
+
+
+# @notifee/react-native
+
 <!-- markdownlint-disable MD033 -->
 <p align="center">
   <a href="https://invertase.io">
