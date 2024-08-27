@@ -1,6 +1,6 @@
 {
   "name": "sx-notifee",
-  "version": "4.1.2",
+  "version": "4.1.4",
   "author": "Invertase <oss@invertase.io> (http://invertase.io)",
   "description": "Notifee - a feature rich notifications library for React Native.",
   "main": "dist/index.js",
