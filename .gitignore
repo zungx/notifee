@@ -546,7 +546,7 @@ Pods/*
 .idea/**/*
 **/Pods/**
 **/dist/
-**/version.js
+# **/version.js
 typedoc.raw.json
 tests/ios/Firebase
 .tmp
